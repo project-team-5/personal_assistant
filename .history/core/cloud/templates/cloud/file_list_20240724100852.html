@@ -1,0 +1,12 @@
+<!-- templates/myapp/file_list.html -->
+{% extends "upload_media.html" %}
+
+{% block content %}
+  <h2>Uploaded Files</h2>
+  <ul>
+    {% for file in files %}
+      <li><a href="{{ file.file.url }}">{{ file.file.public_id }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'upload_file' %}">Upload new file</a>
+{% endblock %}
