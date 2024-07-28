@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2>Search Contacts</h2>
-    <form method="get" action="{% url 'search_contact' %}">
+    <form method="get" action="{% url 'addressbook:search_contact' %}">
         <input type="text" name="q" placeholder="Search contacts..." value="{{ request.GET.q }}">
         <button type="submit">Search</button>
     </form>
@@ -33,5 +33,5 @@
     {% endif %}
 
 
-    <a href="{% url 'home' %}">Back to home</a>
+    <a href="{% url 'addressbook:home' %}">Back to home</a>
 {% endblock %}

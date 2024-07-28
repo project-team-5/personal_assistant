@@ -2,36 +2,41 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Note, Tag
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class NoteListView(ListView):
+class NoteListView(LoginRequiredMixin, ListView):
     model = Note
     template_name = 'notes/note_list.html'
     context_object_name = 'notes'
 
 
-class NoteDetailView(DetailView):
+class NoteDetailView(LoginRequiredMixin, DetailView):
     model = Note
     template_name = 'notes/note_detail.html'
-    template_name = 'notes/note_detail.html'  
+    # template_name = 'notes/note_detail.html'  
 
-class NoteCreateView(CreateView):
+
+class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     fields = ['title', 'content', 'tags']
     template_name = 'notes/note_form.html'
-    success_url = reverse_lazy('note-list')
+    success_url = reverse_lazy('notes:note_list')
 
-class NoteUpdateView(UpdateView):
+
+class NoteUpdateView(LoginRequiredMixin, UpdateView):
     model = Note
     fields = ['title', 'content', 'tags']
     template_name = 'notes/note_form.html'
-    success_url = reverse_lazy('note-list')
-    
-class NoteDeleteView(DeleteView):
+    success_url = reverse_lazy('notes:note_list')
+
+
+class NoteDeleteView(LoginRequiredMixin, DeleteView):
     model = Note
     template_name = 'notes/note_confirm_delete.html'
-    success_url = reverse_lazy('note-list')
+    success_url = reverse_lazy('notes:note_list')
 
-class NoteSearchView(ListView):
+
+class NoteSearchView(LoginRequiredMixin, ListView):
     model = Note
     template_name = 'notes/note_search.html'
     context_object_name = 'notes'

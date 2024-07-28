@@ -11,16 +11,19 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         {% load static %}
         <link rel="stylesheet" href="{% static 'addressbook/style.css' %}">
- 
-        <nav>
-
-            <a href="{% url 'add_contact' %}" class="btn btn-primary">Add Contact</a>
-            <a href="{% url 'birthday_list' %}" class="btn btn-primary">Birthday List</a>
-            <a href="{% url 'search_contact' %}" class="btn btn-primary">Search Contact</a>
-            <a href="{% url 'contact_list' %}" class="btn btn-primary">Edit/Delete Contact</a>
+        <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+            <ul>
+                <li><a href="{% url 'custom_auth:main' %}" role="button" class="nav-button" > Go back to the main page </a></li>
+            </ul>
         </nav>
     </header>
     <main>
+         <nav>
+            <a href="{% url 'addressbook:add_contact' %}" class="btn btn-primary">Add Contact</a>
+            <a href="{% url 'addressbook:birthday_list' %}" class="btn btn-primary">Birthday List</a>
+            <a href="{% url 'addressbook:search_contact' %}" class="btn btn-primary">Search Contact</a>
+            <a href="{% url 'addressbook:contact_list' %}" class="btn btn-primary">Edit/Delete Contact</a>
+        </nav>
         {% block content %}
         {% endblock %}
 
@@ -28,5 +31,4 @@
     <footer>
         <p>&copy; 2024 My Contacts</p>
     </footer>
-</body>
-</html>
+

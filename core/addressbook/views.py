@@ -3,10 +3,13 @@ from django.contrib import messages
 from .models import AllContact, Phone, Email
 from .forms import AllContactForm, PhoneFormSet, EmailFormSet
 from datetime import date, timedelta
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     return render(request, 'addressbook/home.html')
 
+@login_required
 def add_contact(request):
     if request.method == 'POST':
         all_contact_form = AllContactForm(request.POST)
@@ -21,7 +24,7 @@ def add_contact(request):
             email_formset.instance = all_contact
             email_formset.save()
             messages.success(request, 'Contact saved successfully!')
-            return redirect('home')
+            return redirect('addressbook:home')
     else:
         all_contact_form = AllContactForm()
         phone_formset = PhoneFormSet()
@@ -32,6 +35,7 @@ def add_contact(request):
         'email_formset': email_formset
     })
 
+@login_required
 def birthday_list(request):
     if request.method == 'POST':
         days = int(request.POST['days'])
@@ -40,6 +44,7 @@ def birthday_list(request):
         return render(request, 'addressbook/birthday_list.html', {'contacts': contacts, 'days': days})
     return render(request, 'addressbook/birthday_form.html')
 
+@login_required
 def search_contact(request):
     query = request.GET.get('q')
     if query:
@@ -48,11 +53,12 @@ def search_contact(request):
         contacts = []
     return render(request, 'addressbook/search_contact.html', {'contacts': contacts})
 
-
+@login_required
 def contact_list(request):
     contacts = AllContact.objects.all()
     return render(request, 'addressbook/contact_list.html', {'contacts': contacts})
 
+@login_required
 def edit_contact(request, pk):
     contact = get_object_or_404(AllContact, pk=pk)
     if request.method == 'POST':
@@ -68,7 +74,7 @@ def edit_contact(request, pk):
             email_formset.instance = all_contact
             email_formset.save()
             messages.success(request, 'Contact updated successfully!')
-            return redirect('contact_list')
+            return redirect('addressbook:contact_list')
     else:
         all_contact_form = AllContactForm(instance=contact)
         phone_formset = PhoneFormSet(instance=contact)
@@ -80,9 +86,10 @@ def edit_contact(request, pk):
         'contact': contact
     })
 
+@login_required
 def delete_contact(request, pk):
     contact = get_object_or_404(AllContact, pk=pk)
     contact.delete()
     messages.success(request, 'Contact deleted successfully!')
-    return redirect('contact_list')
+    return redirect('addressbook:contact_list')
 
