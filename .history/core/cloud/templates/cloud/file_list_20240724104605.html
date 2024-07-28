@@ -1,0 +1,18 @@
+<!-- media_app/templates/media_app/upload_media.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Upload Page</title>
+</head>
+
+<body>
+
+  <h2>Uploaded Files</h2>
+  <ul>
+    {% for file in files %}
+      <li><a href="{{ file.file.url }}">{{ file.file.public_id }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'upload_file' %}">Upload new file</a>
+</body>
+<html></html>
