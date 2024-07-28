@@ -4,7 +4,7 @@ it's a final project of software python course
 '''
 Щоб запустити локально сервер для розробки, достатньо виконати команду в консолі 
 
-    python manage.py runserver
+python manage.py runserver    
 
 знаходячись всередині папки проекту core
 '''
