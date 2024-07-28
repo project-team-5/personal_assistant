@@ -71,8 +71,25 @@
             </ul>
         {% endif %}
     </nav>
+
     <div class="container-tag" style=" margin-bottom: 20px; border-bottom: 2px; padding-left: 30px">
         </div>
+    {% if user.is_authenticated %}
+        <li><a class="container" href="{% url 'addressbook:home' %}" role="button">ADDRESS BOOK</a></li>
+        <li><a class="container" href="{% url 'notes:note_list' %}" role="button">My notes</a></li>
+        <li><a class="container" href="{% url 'custom_auth:profile' %}" role="button">Profile</a></li>
+        <li><a class="container" href="{% url 'cloud:file_list' %}" role="button">FILE LIST</a></li>
+        {% block content %} 
+        {% endblock %}
+
+    {% else %}
+        <p>Welcome to personnal assistant</p>
+        <p>To become a part of us:</p>
+            <ul>
+                <li><a class="nav-button"  href="{% url 'custom_auth:signup' %}" role="button">Sign Up</a></li>
+                <li><a class="nav-button" href="{% url 'custom_auth:login' %}" role="button">Login</a></li>
+            </ul>
+    {% endif %}        
 </main>
 </body>
 </html>

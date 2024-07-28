@@ -22,7 +22,7 @@ def signupuser(request):
         if form.is_valid():
             print(form['username'], form['password1'])
             form.save()
-            return redirect(to='custom_auth:main')
+            return redirect(to='custom_auth:login')
         else:
             return render(request, 'custom_auth/signup.html', context={"form": form})
 

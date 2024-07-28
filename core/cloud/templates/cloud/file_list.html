@@ -13,6 +13,6 @@
       <li><a href="{{ file.file.url }}">{{ file.file.public_id }}</a></li>
     {% endfor %}
   </ul>
-  <a href="{% url 'upload_file' %}">Upload new file</a>
+  <a href="{% url 'cloud:upload_file' %}">Upload new file</a>
 </body>
 </html>

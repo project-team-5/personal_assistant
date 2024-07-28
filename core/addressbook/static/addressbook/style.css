@@ -5,8 +5,16 @@
     border-radius: 5px;
     box-shadow: 2px 2px 3px #333333;
 }
+body{
+            font-family:  'Gill Sans MT', sans-serif;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);  ;
 
+        }
+.nav-button{
+            background-color:rgba(9, 65, 110, 0.518);
+            border-color:rgba(4, 35, 61, 0.518);
 
+        }
 .quote span.text {
     display: block;
     margin-bottom: 5px;
