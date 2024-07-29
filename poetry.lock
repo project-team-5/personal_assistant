@@ -282,6 +282,21 @@ files = [
 ]
 
 [[package]]
+name = "image"
+version = "1.5.33"
+description = "Django application that provides cropping, resizing, thumbnailing, overlays and masking for images and videos with the ability to set the center of attention,"
+optional = false
+python-versions = "*"
+files = [
+    {file = "image-1.5.33.tar.gz", hash = "sha256:baa2e09178277daa50f22fd6d1d51ec78f19c12688921cb9ab5808743f097126"},
+]
+
+[package.dependencies]
+django = "*"
+pillow = "*"
+six = "*"
+
+[[package]]
 name = "mako"
 version = "1.3.5"
 description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
@@ -737,4 +752,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "4b30278780e1742d1d597c2f57d51804dcd7a1ebf3ea7cacbf8047f1db8de31b"
+content-hash = "fe9980b92f77fe107ed624e23ce03fadfe64c829575158fc10c6c006be6288a1"

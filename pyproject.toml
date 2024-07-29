@@ -14,6 +14,7 @@ cloudinary = "^1.40.0"
 django-cloudinary-storage = "^0.3.0"
 alembic = "^1.13.2"
 pillow = "^10.4.0"
+image = "^1.5.33"
 
 
 [build-system]
