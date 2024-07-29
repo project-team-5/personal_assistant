@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from custom_auth.forms import RegisterForm, LoginForm, ProfileForm
 
+
 def main(request):
     return render(request, 'custom_auth/index.html')
 

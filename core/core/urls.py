@@ -26,5 +26,4 @@ urlpatterns = [
     path("", include('custom_auth.urls')),
     path("notes/", include('notes.urls')),
     path("addressbook/", include('addressbook.urls'))
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
