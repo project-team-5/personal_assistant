@@ -24,7 +24,7 @@ class Profile(models.Model):
                 img = Image.open(self.avatar)
 
                 if img.height > 250 or img.width > 250:
-                    new_img = img.resize((250, 250), Image.ANTIALIAS)
+                    new_img = img.thumbnail((250, 250),Image.Resampling.LANCZOS)
 
                     # Зберігаємо зображення у тимчасовий об'єкт BytesIO
                     output = BytesIO()
