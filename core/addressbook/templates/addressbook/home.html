@@ -1,6 +1,39 @@
-{% extends 'addressbook/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Contacts</title>
+</head>
+<body>
+    <header>
+         <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    /> {% load static %}
+        <link rel="stylesheet" href="{% static 'custom_auth/style.css' %}">
+        <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+            <ul>
+                <li><a href="{% url 'custom_auth:main' %}" role="button" class="nav-button" > Go back to the main page </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <h2 class="hello">Welcome to My Contacts!</h2>
+        <nav>
+            <ul>
+                <li><a  href="{% url 'addressbook:add_contact' %}" role="button"class="nav-button">Add Contact</a></li>
+                <li><a  href="{% url 'addressbook:birthday_list' %}" role="button"class="nav-button">Birthday List</a></li>
+                <li><a  href="{% url 'addressbook:search_contact' %}" role="button" class="nav-button">Search Contact</a></li>
+                <li><a  href="{% url 'addressbook:contact_list' %}" role="button" class="nav-button">Edit/Delete Contact</a></li>
+            </ul>
+        </nav>
+    <p>Select an option from the menu above to get started.</p>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 My Contacts</p>
+    </footer>
 
 {% block content %}
-    <h2>Welcome to My Contacts!</h2>
-    <p>Select an option from the menu above to get started.</p>
+  
 {% endblock %}
