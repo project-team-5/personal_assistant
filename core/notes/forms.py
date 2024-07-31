@@ -1,8 +1,15 @@
 from django import forms
 from .models import Note, Tag
 
+
 class NoteForm(forms.ModelForm):
     new_tags = forms.CharField(max_length=255, required=False, help_text='Введіть нові теги через кому')
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'})
+    )
+
 
     class Meta:
         model = Note
@@ -18,6 +25,5 @@ class NoteForm(forms.ModelForm):
                 for tag_name in tag_names:
                     tag, created = Tag.objects.get_or_create(name=tag_name)
                     instance.tags.add(tag)
+            self.save_m2m()
         return instance
-    
-    
