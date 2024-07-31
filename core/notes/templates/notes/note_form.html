@@ -7,5 +7,5 @@
         {{ form.as_p }}
         <button type="submit">{% if note %}Update{% else %}Create{% endif %}</button>
     </form>
-    <a href="{% url 'notes:note_list' %}">Back to list</a>
+    <a href="{% url 'notes:note-list' %}">Back to list</a>
 {% endblock %}

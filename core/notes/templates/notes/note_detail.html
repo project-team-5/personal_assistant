@@ -3,11 +3,11 @@
 {% block content %}
     <h1>{{ note.title }}</h1>
     <p>{{ note.content }}</p>
-    <p>Tags: {{ note.tags.all|join:", " }}</p>
-    <a href="{% url 'notes:note_update' note.pk %}">Edit</a>
-    <form method="post" action="{% url 'notes:note_delete' note.pk %}">
+    <p>Tags: {% for tag in note.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <a href="{% url 'notes:note-update' note.pk %}">Edit</a>
+    <form method="post" action="{% url 'notes:note-delete' note.pk %}">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
-    <a href="{% url 'notes:note_list' %}">Back to list</a>
+    <a href="{% url 'notes:note-list' %}">Back to list</a>
 {% endblock %}

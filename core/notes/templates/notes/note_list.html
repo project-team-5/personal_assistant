@@ -4,10 +4,10 @@
     <h1>Note List</h1>
     <ul>
     {% for note in notes %}
-        <li><a href="{% url 'notes:note_detail' note.id %}">{{ note.title }}</a></li>
+        <li><a href="{% url 'notes:note-detail' note.id %}">{{ note.title }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{% url 'notes:note_create' %}">Add Note</a>
+    <a href="{% url 'notes:note-create' %}">Add Note</a>
 
 {% endblock %}
 
