@@ -5,12 +5,13 @@ import datetime
 from io import BytesIO
 from django.core.files.base import ContentFile
 
+
 # Extending User Model Using a One-To-One Link
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='core/media/gus.png', upload_to='profile_images')
+    avatar = models.ImageField(default='media/gus.png', upload_to='profile_images')
     # date_birth = models.DateField(default= datetime.date.today()) 
-    address= models.CharField(default='my address')
+    address = models.CharField(default='my address')
     # email=models.EmailField()
     # phone_number= models.CharField()
 
@@ -18,14 +19,17 @@ class Profile(models.Model):
         return self.user.username
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         try:
             if self.avatar:
                 # Відкриваємо зображення аватара
                 img = Image.open(self.avatar)
 
                 if img.height > 250 or img.width > 250:
-                    new_img = img.thumbnail((250, 250),Image.Resampling.LANCZOS)
-
+                    # new_img = img.thumbnail((250, 250),Image.Resampling.LANCZOS)
+                    new_img = (250, 250)
+                    img.thumbnail(new_img)
+                    img.save(self.avatar.path)
                     # Зберігаємо зображення у тимчасовий об'єкт BytesIO
                     output = BytesIO()
                     new_img.save(output, format='JPEG')
@@ -36,17 +40,15 @@ class Profile(models.Model):
                     output.close()
         except Exception as e:
             print(f' It was error is signals: {e}')
-        super().save(*args, **kwargs)
+        # super().save(*args, **kwargs)
     
-    # resizing images
+    # # resizing images
     # def save(self, *args, **kwargs):
     #     super().save()
 
-    #     img = Image.open(self.avatar.path)
+    #     img = Image.open(self.avatar)
 
     #     if img.height > 250 or img.width > 250:
     #         new_img = (250, 250)
     #         img.thumbnail(new_img)
-    #         img.save(self.avatar.path)
-
-        
+    #         img.save(self.avatar)

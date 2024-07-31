@@ -55,6 +55,7 @@ def loginuser(request):
 
     return render(request, 'custom_auth/login.html', context={"form": LoginForm()})
 
+
 @login_required
 def logoutuser(request):
     logout(request)
